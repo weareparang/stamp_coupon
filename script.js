@@ -201,7 +201,7 @@ async function addStamp() {
             method: 'POST',
             body: JSON.stringify({
                 action: 'addStamp',
-                phone: currentCustomer.phone,
+                phone: currentUser.phone,
                 count: stampCount
             })
         });
@@ -210,7 +210,7 @@ async function addStamp() {
         if (result.success) {
             alert('도장 ' + stampCount + '개가 추가되었습니다!');
             closeStampPopup();
-            loadCustomerInfo();
+            updateStampDisplay();
         }
     } catch (error) {
         alert('오류가 발생했습니다.');
@@ -443,7 +443,7 @@ async function useCoupon() {
             method: 'POST',
             body: JSON.stringify({
                 action: 'useCoupon',
-                phone: currentCustomer.phone
+                phone: currentUser.phone
             })
         });
 
@@ -451,7 +451,7 @@ async function useCoupon() {
         if (result.success) {
             alert('쿠폰이 사용되었습니다!');
             closeCouponPopup();
-            loadCustomerInfo();
+            updateStampDisplay();
         } else {
             alert(result.message || '쿠폰 사용에 실패했습니다.');
         }
