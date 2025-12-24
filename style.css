@@ -1,0 +1,569 @@
+/* 기본 스타일 리셋 및 변수 설정 */
+:root {
+    --primary-green: #5D7052;
+    --light-green: #7A8F6E;
+    --dark-green: #4A5A42;
+    --beige-light: #F5F0E8;
+    --beige: #E8E0D0;
+    --beige-dark: #D4C8B8;
+    --brown: #8B7355;
+    --brown-light: #A68B5B;
+    --text-dark: #3D3D3D;
+    --text-light: #6B6B6B;
+    --white: #FFFFFF;
+    --error: #D35D5D;
+    --success: #5D7052;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--beige-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* 페이지 기본 구조 */
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.page.active {
+    display: block;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* 로고 섹션 */
+.logo-section {
+    text-align: center;
+    padding: 40px 0 30px;
+}
+
+.logo-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+}
+
+.book-coffee-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.shop-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.shop-desc {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* 로그인 폼 */
+.login-form {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid var(--beige);
+    border-radius: 12px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: var(--beige-light);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    background: var(--white);
+}
+
+.input-group input::placeholder {
+    color: var(--text-light);
+}
+
+/* 버튼 스타일 */
+.btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-green);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--dark-green);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-stamp {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+    color: var(--white);
+    padding: 20px;
+    font-size: 18px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(93, 112, 82, 0.3);
+}
+
+.btn-stamp:hover {
+    box-shadow: 0 6px 20px rgba(93, 112, 82, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-stamp:active {
+    transform: translateY(0);
+}
+
+.privacy-notice {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 20px;
+}
+
+/* 헤더 */
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--text-dark);
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.btn-back:hover {
+    background: var(--beige);
+}
+
+.page-title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-right: 40px;
+}
+
+/* 사용자 정보 */
+.user-info {
+    text-align: center;
+    padding: 15px;
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.user-name {
+    font-weight: 700;
+    color: var(--primary-green);
+    font-size: 18px;
+}
+
+.welcome-text {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+/* 도장 카드 */
+.stamp-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stamp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px dashed var(--beige);
+}
+
+.stamp-count {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.stamp-label {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* 도장 그리드 */
+.stamp-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stamp-slot {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--beige-light);
+    border: 2px dashed var(--beige-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.stamp-slot.filled {
+    background: var(--primary-green);
+    border: 2px solid var(--dark-green);
+    animation: stampPop 0.4s ease;
+}
+
+.stamp-slot.filled::after {
+    content: '☕';
+    font-size: 20px;
+}
+
+.stamp-slot:not(.filled)::after {
+    content: attr(data-number);
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+@keyframes stampPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 리워드 안내 */
+.stamp-reward {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige) 100%);
+    border-radius: 12px;
+}
+
+.reward-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.reward-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brown);
+}
+
+/* 쿠폰 섹션 */
+.coupon-section {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    color: var(--white);
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.coupon-count {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+}
+
+.coupon-number {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.coupon-label {
+    font-size: 16px;
+}
+
+.coupon-notice {
+    font-size: 12px;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* 모달 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 340px;
+    overflow: hidden;
+    animation: modalSlideUp 0.3s ease;
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--beige);
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    color: var(--text-dark);
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.modal-body {
+    padding: 25px 20px;
+}
+
+.modal-desc {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.staff-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid var(--beige);
+    border-radius: 12px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 8px;
+    background: var(--beige-light);
+}
+
+.staff-input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    background: var(--white);
+}
+
+.error-message {
+    color: var(--error);
+    font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+    min-height: 20px;
+}
+
+.modal-footer {
+    padding: 0 20px 20px;
+}
+
+/* 성공 모달 */
+.success-modal {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.success-icon {
+    margin-bottom: 20px;
+}
+
+.success-modal h3 {
+    font-size: 20px;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.success-modal p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* 로딩 오버레이 */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--beige);
+    border-top-color: var(--primary-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-overlay p {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+/* 반응형 조정 */
+@media (max-width: 360px) {
+    .container {
+        padding: 15px;
+    }
+
+    .login-form {
+        padding: 25px 20px;
+    }
+
+    .stamp-card {
+        padding: 20px;
+    }
+
+    .stamp-slot.filled::after {
+        font-size: 16px;
+    }
+
+    .shop-name {
+        font-size: 20px;
+    }
+}
+
+/* 큰 화면에서 중앙 정렬 */
+@media (min-width: 768px) {
+    .page {
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page.active {
+        display: flex;
+    }
+
+    .container {
+        padding: 40px 20px;
+    }
+}
+
+/* 접근성 개선 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 터치 영역 최적화 (40대-50대 사용자 고려) */
+input, button {
+    min-height: 48px;
+}
+
+/* 포커스 표시 강화 */
+input:focus, button:focus {
+    outline: 3px solid rgba(93, 112, 82, 0.3);
+    outline-offset: 2px;
+}
