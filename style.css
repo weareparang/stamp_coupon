@@ -600,23 +600,51 @@ input:focus, button:focus {
 /* ========== v2.0 쿠폰 사용 스타일 ========== */
 
 /* 쿠폰 표시 영역 - 클릭 가능하게 */
+/* ========== v5.0 쿠폰 버튼 색상 수정 (녹색 계열) ========== */
+
 .coupon-display {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
+    background: linear-gradient(135deg, #5D7052, #4A5A42);
     padding: 20px;
     border-radius: 12px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
+    color: white;
+    font-family: inherit;
 }
 
 .coupon-display:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(93, 112, 82, 0.4);
 }
 
 .coupon-display:active {
     transform: scale(0.98);
+}
+
+.coupon-display .coupon-label {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 5px;
+}
+
+.coupon-display .coupon-count {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+}
+
+.coupon-display .coupon-unit {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.coupon-display .coupon-hint {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 8px;
 }
 
 .coupon-hint {
@@ -705,4 +733,3 @@ input:focus, button:focus {
     font-size: 14px;
     margin-top: 10px;
     font-weight: 500;
-    
