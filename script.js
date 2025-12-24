@@ -185,7 +185,7 @@ async function getOrCreateCustomer(name, phone) {
         return getLocalData(name, phone);
     }
 }
-
+/* v5.0: 충돌 방지를 위해 주석 처리
 // 도장 추가 함수 (v2.0 - 다중 도장 지원)
 async function addStamp() {
     const password = document.getElementById('staffPassword').value;
@@ -216,6 +216,7 @@ async function addStamp() {
         alert('오류가 발생했습니다.');
     }
 }
+*/
 
 // ============================================
 // 로컬 스토리지 백업 함수 (오프라인 대응)
@@ -344,6 +345,7 @@ elements.staffModal.addEventListener('click', function(e) {
 });
 
 // 도장 확인 (암호 입력 후)
+// v5.0 수정: 다중 도장 + 실시간 반영
 elements.confirmStamp.addEventListener('click', async function() {
     const password = elements.staffPassword.value;
 
@@ -354,23 +356,54 @@ elements.confirmStamp.addEventListener('click', async function() {
         return;
     }
 
+    // v5.0: 도장 수 가져오기 (stampCount 요소가 있으면 해당 값, 없으면 1)
+    const stampCountElement = document.getElementById('stampCount');
+    const stampCount = stampCountElement ? parseInt(stampCountElement.value) || 1 : 1;
+
     hideModal(elements.staffModal);
+    showLoading();
 
-    // 도장 추가 API 호출
-    const data = await addStamp(currentUser.name, currentUser.phone);
+    try {
+        // v5.0: count 파라미터 추가
+        const response = await fetch(CONFIG.API_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                action: 'addStamp',
+                name: currentUser.name,
+                phone: currentUser.phone,
+                count: stampCount
+            })
+        });
 
-    // 화면 업데이트
-    updateUserDisplay(data);
+        const data = await response.json();
+        hideLoading();
 
-    // 성공 메시지
-    if (data.newCoupon) {
-        elements.successTitle.textContent = '축하합니다!';
-        elements.successMessage.textContent = '10개 도장을 모두 모아 무료 음료 쿠폰이 발급되었습니다!';
-    } else {
-        elements.successTitle.textContent = '도장이 찍혔습니다!';
-        elements.successMessage.textContent = `현재 ${data.stamps}개의 도장이 모였어요. ${10 - data.stamps}개 더 모으면 무료 음료!`;
+        if (data.success) {
+            // v5.0: 현재 사용자 정보 업데이트
+            currentUser.stamps = data.stamps;
+            currentUser.coupons = data.coupons || currentUser.coupons;
+
+            // v5.0: 화면 즉시 반영
+            elements.currentStamps.textContent = data.stamps;
+            elements.couponCount.textContent = currentUser.coupons;
+            renderStampGrid(data.stamps);
+
+            // 성공 메시지
+            if (data.addedCoupons && data.addedCoupons > 0) {
+                elements.successTitle.textContent = '축하합니다!';
+                elements.successMessage.textContent = '10개 도장을 모두 모아 무료 음료 쿠폰이 발급되었습니다!';
+            } else {
+                elements.successTitle.textContent = '도장이 찍혔습니다!';
+                elements.successMessage.textContent = '도장 ' + stampCount + '개가 추가되었습니다! 현재 ' + data.stamps + '개';
+            }
+            showModal(elements.successModal);
+        } else {
+            alert(data.message || '도장 추가에 실패했습니다.');
+        }
+    } catch (error) {
+        hideLoading();
+        alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
-    showModal(elements.successModal);
 });
 
 // 성공 모달 닫기
