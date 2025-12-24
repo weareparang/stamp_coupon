@@ -697,3 +697,12 @@ input:focus, button:focus {
 .btn-cancel:hover {
     background-color: #bbb;
 }
+
+/* ========== v4.0 쿠폰 안내 문구 스타일 ========== */
+.coupon-notice {
+    text-align: center;
+    color: #5D7052;
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: 500;
+    
