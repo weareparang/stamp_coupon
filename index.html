@@ -78,13 +78,11 @@
             </div>
 
             <!-- 쿠폰 보유 현황 -->
-            <div class="coupon-section" id="couponSection">
-                <h3 class="section-title">보유 쿠폰</h3>
-                <div class="coupon-count">
-                    <span class="coupon-number" id="couponCount">0</span>
-                    <span class="coupon-label">장</span>
-                </div>
-                <p class="coupon-notice" id="couponNotice">무료 음료 쿠폰을 모아보세요!</p>
+            <div class="coupon-display" onclick="openCouponPopup()">
+                <span class="coupon-label">보유 쿠폰</span>
+                <span class="coupon-count" id="couponCount">0</span>
+                <span class="coupon-unit">개</span>
+                <span class="coupon-hint">탭하여 사용</span>
             </div>
 
             <button id="addStampBtn" class="btn btn-stamp">도장 찍기</button>
@@ -100,6 +98,22 @@
             </div>
             <div class="modal-body">
                 <p class="modal-desc">직원 암호를 입력해주세요</p>
+                <!-- 도장 수 선택 -->
+                 <div class="stamp-count-selector">
+                    <label for="stampCount">찍을 도장 수:</label>
+                    <select id="stampCount">
+                        <option value="1">1개</option>
+                        <option value="2">2개</option>        
+                        <option value="3">3개</option>        
+                        <option value="4">4개</option>        
+                        <option value="5">5개</option>        
+                        <option value="6">6개</option>        
+                        <option value="7">7개</option>        
+                        <option value="8">8개</option>        
+                        <option value="9">9개</option>        
+                        <option value="10">10개</option>    
+                    </select>
+                </div>
                 <input type="password" id="staffPassword" class="staff-input" placeholder="암호 입력">
                 <div id="passwordError" class="error-message"></div>
             </div>
@@ -131,5 +145,24 @@
     </div>
 
     <script src="script.js"></script>
+    <!-- ========== v2.0 쿠폰 사용 팝업 ========== -->
+    <div id="couponPopup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+        <h3>쿠폰 사용</h3>
+        <p>쿠폰 1개를 사용하시겠습니까?</p>
+        <p class="coupon-info">현재 보유 쿠폰: <span id="currentCouponCount">0</span>개</p>
+
+        <div class="staff-verify">
+            <label for="couponStaffPassword">직원 확인 암호:</label>
+            <input type="password" id="couponStaffPassword" placeholder="직원 암호 입력">
+        </div>
+
+        <div class="popup-buttons">
+            <button onclick="useCoupon()" class="btn-confirm">쿠폰 사용</button>
+            <button onclick="closeCouponPopup()" class="btn-cancel">취소</button>
+        </div>
+    </div>
+</div>
+<!-- ========== v2.0 쿠폰 사용 팝업 끝 ========== -->
 </body>
 </html>

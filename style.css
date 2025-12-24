@@ -567,3 +567,133 @@ input:focus, button:focus {
     outline: 3px solid rgba(93, 112, 82, 0.3);
     outline-offset: 2px;
 }
+
+/* ========== v2.0 추가 스타일 ========== */
+
+/* 도장 수 선택기 스타일 */
+.stamp-count-selector {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.stamp-count-selector label {
+    font-weight: bold;
+    color: #5D7052;
+}
+
+.stamp-count-selector select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #5D7052;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.stamp-count-selector select:focus {
+    outline: none;
+    border-color: #4A5A42;
+}
+/* ========== v2.0 쿠폰 사용 스타일 ========== */
+
+/* 쿠폰 표시 영역 - 클릭 가능하게 */
+.coupon-display {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.coupon-display:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+}
+
+.coupon-display:active {
+    transform: scale(0.98);
+}
+
+.coupon-hint {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* 직원 확인 영역 */
+.staff-verify {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.staff-verify label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #5D7052;
+}
+
+.staff-verify input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.staff-verify input:focus {
+    border-color: #5D7052;
+    outline: none;
+}
+
+/* 쿠폰 정보 */
+.coupon-info {
+    font-size: 18px;
+    color: #5D7052;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* 팝업 버튼 */
+.popup-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-confirm {
+    flex: 1;
+    padding: 12px;
+    background-color: #5D7052;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-confirm:hover {
+    background-color: #4A5A42;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 12px;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #bbb;
+}

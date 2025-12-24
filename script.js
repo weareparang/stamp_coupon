@@ -186,24 +186,34 @@ async function getOrCreateCustomer(name, phone) {
     }
 }
 
-// 도장 추가
-async function addStamp(name, phone) {
-    showLoading();
+// 도장 추가 함수 (v2.0 - 다중 도장 지원)
+async function addStamp() {
+    const password = document.getElementById('staffPassword').value;
+    const stampCount = parseInt(document.getElementById('stampCount').value) || 1;
+
+    if (password !== CONFIG.STAFF_PASSWORD) {
+        alert('암호가 올바르지 않습니다.');
+        return;
+    }
 
     try {
-        const url = `${CONFIG.API_URL}?action=addStamp&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
-        const result = await fetch(url);
-        const data = await result.json();
+        const response = await fetch(CONFIG.API_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                action: 'addStamp',
+                phone: currentCustomer.phone,
+                count: stampCount
+            })
+        });
 
-        hideLoading();
-        return data;
-
+        const result = await response.json();
+        if (result.success) {
+            alert('도장 ' + stampCount + '개가 추가되었습니다!');
+            closeStampPopup();
+            loadCustomerInfo();
+        }
     } catch (error) {
-        hideLoading();
-        console.error('API 오류:', error);
-
-        // API 연결 실패시 로컬 스토리지 사용 (백업)
-        return addLocalStamp(name, phone);
+        alert('오류가 발생했습니다.');
     }
 }
 
@@ -396,3 +406,56 @@ function init() {
 
 // 페이지 로드시 초기화
 document.addEventListener('DOMContentLoaded', init);
+
+// ========== v2.0 쿠폰 사용 기능 ==========
+
+// 쿠폰 팝업 열기
+function openCouponPopup() {
+    const couponCount = parseInt(document.getElementById('couponCount').textContent) || 0;
+
+    if (couponCount <= 0) {
+        alert('사용 가능한 쿠폰이 없습니다.');
+        return;
+    }
+
+    document.getElementById('currentCouponCount').textContent = couponCount;
+    document.getElementById('couponStaffPassword').value = '';
+    document.getElementById('couponPopup').style.display = 'flex';
+}
+
+// 쿠폰 팝업 닫기
+function closeCouponPopup() {
+    document.getElementById('couponPopup').style.display = 'none';
+}
+
+// 쿠폰 사용 (직원 암호 확인 포함)
+async function useCoupon() {
+    const password = document.getElementById('couponStaffPassword').value;
+
+    // 직원 암호 확인
+    if (password !== CONFIG.STAFF_PASSWORD) {
+        alert('암호가 올바르지 않습니다.');
+        return;
+    }
+
+    try {
+        const response = await fetch(CONFIG.API_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                action: 'useCoupon',
+                phone: currentCustomer.phone
+            })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('쿠폰이 사용되었습니다!');
+            closeCouponPopup();
+            loadCustomerInfo();
+        } else {
+            alert(result.message || '쿠폰 사용에 실패했습니다.');
+        }
+    } catch (error) {
+        alert('오류가 발생했습니다.');
+    }
+}
